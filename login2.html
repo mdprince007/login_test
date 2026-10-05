@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Login Page (Login 2)</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #0f172a;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    /* Page Navigation Switcher */
+    .top-switcher {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+      background: rgba(30, 41, 59, 0.7);
+      padding: 8px 16px;
+      border-radius: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 13px;
+    }
+
+    .top-switcher a {
+      color: #94a3b8;
+      text-decoration: none;
+      padding: 4px 12px;
+      border-radius: 20px;
+      transition: all 0.2s;
+    }
+
+    .top-switcher a:hover {
+      color: #ffffff;
+    }
+
+    .top-switcher a.active {
+      background: #6366f1;
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .container {
+      background-color: #ffffff;
+      border-radius: 16px;
+      display: flex;
+      width: 750px;
+      max-width: 100%;
+      overflow: hidden;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+    }
+
+    .illustration-box {
+      background: linear-gradient(135deg, #a855f7, #6366f1);
+      width: 45%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .character-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .pupil {
+      transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    #mouth {
+      transition: d 0.25s ease;
+    }
+
+    .login-card {
+      width: 55%;
+      padding: 40px 30px;
+    }
+
+    .login-card h2 {
+      font-size: 24px;
+      color: #1e293b;
+      margin-bottom: 6px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: #64748b;
+      margin-bottom: 24px;
+    }
+
+    .input-group {
+      margin-bottom: 18px;
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #334155;
+      margin-bottom: 6px;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      outline: none;
+      font-size: 14px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .input-group input:focus {
+      border-color: #6366f1;
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+    }
+
+    .form-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      margin-bottom: 20px;
+    }
+
+    .remember-me {
+      color: #475569;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .forgot-pass {
+      color: #6366f1;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .forgot-pass:hover {
+      text-decoration: underline;
+    }
+
+    .btn-primary {
+      width: 100%;
+      background-color: #0f172a;
+      color: #ffffff;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .btn-primary:hover {
+      background-color: #1e293b;
+    }
+
+    .btn-primary:active {
+      transform: scale(0.99);
+    }
+
+    /* Eye CSS Animation States */
+    .eyes.shy .pupil {
+      transform: translateY(-8px);
+    }
+
+    .eyes.cover .eye {
+      display: none;
+    }
+
+    /* Responsive for mobile */
+    @media (max-width: 680px) {
+      .container {
+        flex-direction: column;
+        width: 100%;
+      }
+      .illustration-box {
+        width: 100%;
+        padding: 30px;
+      }
+      .login-card {
+        width: 100%;
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Switcher between Login 1, Login 2, & Login 3 -->
+  <div class="top-switcher">
+    <a href="/login">👈 Login 1</a>
+    <a href="/login2" class="active">✨ Login 2</a>
+    <a href="/login3">👾 Login 3 (Monsters)</a>
+  </div>
+
+  <div class="container">
+    <div class="illustration-box">
+      <div class="character-container">
+        <svg id="character-svg" viewBox="0 0 200 200" width="160" height="160">
+          <circle cx="100" cy="100" r="80" fill="#6C5CE7" />
+          
+          <g class="eyes">
+            <circle class="eye left-eye" cx="70" cy="85" r="10" fill="#FFFFFF" />
+            <circle class="pupil left-pupil" cx="70" cy="85" r="4" fill="#2D3436" />
+            <circle class="eye right-eye" cx="130" cy="85" r="10" fill="#FFFFFF" />
+            <circle class="pupil right-pupil" cx="130" cy="85" r="4" fill="#2D3436" />
+          </g>
+          
+          <path id="mouth" d="M 70 125 Q 100 145 130 125" stroke="#2D3436" stroke-width="5" fill="none" stroke-linecap="round" />
+        </svg>
+      </div>
+    </div>
+
+    <div class="login-card">
+      <h2>Welcome back</h2>
+      <p class="subtitle">Please enter your details.</p>
+
+      <form id="login-form">
+        <div class="input-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="you@example.com" required>
+        </div>
+
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="••••••••" required>
+        </div>
+
+        <div class="form-actions">
+          <label class="remember-me">
+            <input type="checkbox"> Remember for 30 days
+          </label>
+          <a href="#" class="forgot-pass" id="forgotLink">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="btn-primary" id="loginBtn">Log in</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const leftPupil = document.querySelector('.left-pupil');
+    const rightPupil = document.querySelector('.right-pupil');
+    const mouth = document.getElementById('mouth');
+    const loginForm = document.getElementById('login-form');
+    const loginBtn = document.getElementById('loginBtn');
+
+    // Email টাইপ করার সাথে সাথে Pupil বা চোখের মণি ডানে-বামে মুভ করার জন্য
+    emailInput.addEventListener('input', (e) => {
+      const length = e.target.value.length;
+      const moveX = Math.min(Math.max((length - 10) * 0.8, -10), 10);
+      
+      leftPupil.style.transform = `translateX(${moveX}px) translateY(2px)`;
+      rightPupil.style.transform = `translateX(${moveX}px) translateY(2px)`;
+      
+      // স্মাইল মাউথ
+      mouth.setAttribute('d', 'M 70 125 Q 100 145 130 125');
+    });
+
+    // Password ফিল্ডে ফোকাস করলে মুখ বা চোখ লুকিয়ে ফেলা (Interactive Shy Effect)
+    passwordInput.addEventListener('focus', () => {
+      leftPupil.style.transform = 'translateY(-12px)';
+      rightPupil.style.transform = 'translateY(-12px)';
+      // মুখ সোজা বা বন্ধ করার অনুভূতি দেওয়া
+      mouth.setAttribute('d', 'M 70 130 Q 100 130 130 130');
+    });
+
+    // Password ফিল্ড থেকে ফোকাস চলে গেলে নরমাল করা
+    passwordInput.addEventListener('blur', () => {
+      leftPupil.style.transform = 'translate(0, 0)';
+      rightPupil.style.transform = 'translate(0, 0)';
+      mouth.setAttribute('d', 'M 70 125 Q 100 145 130 125');
+    });
+
+    // Form submission feedback
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const originalText = loginBtn.textContent;
+      loginBtn.textContent = 'Logging in...';
+      loginBtn.disabled = true;
+
+      try {
+        const response = await fetch('/api/login2', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: emailInput.value, password: passwordInput.value })
+        });
+        const data = await response.json();
+        alert(data.message || 'Log in successful!');
+      } catch (err) {
+        alert(`Welcome back! Successfully logged in with: ${emailInput.value}`);
+      } finally {
+        loginBtn.textContent = originalText;
+        loginBtn.disabled = false;
+      }
+    });
+
+    document.getElementById('forgotLink').addEventListener('click', (e) => {
+      e.preventDefault();
+      alert('Password reset link sent (Simulated)');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "name": "login-app",
+  "version": "1.0.0",
+  "description": "Interactive modern Sign In page with unique localhost server",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}
