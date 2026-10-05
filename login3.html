@@ -122,21 +122,12 @@
         }
 
         .flip-back {
-            background: #4B37D4;
+            background: #5b4cfa;
             transform: rotateY(180deg);
             border-radius: 8px 8px 0 0;
         }
 
-        .flip-back::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 10px;
-            background: #604AE8;
-            border-radius: 8px 8px 0 0;
-        }
+        .flip-back::before { display: none; }
 
         /* 2. Dark Monster (Middle Right) */
         .monster-dark {
@@ -179,17 +170,17 @@
         }
 
         .stage-box.shy .monster-dark {
-            transform: translateY(32px) rotate(-8deg); /* Dark hides down */
-            opacity: 0.85;
+            transform: translateY(16px) rotate(-4deg); /* Dark hides down */
+            opacity: 1;
         }
 
         .stage-box.shy .monster-orange {
-            transform: translateY(18px) scale(0.96, 0.85); /* Orange squishes down */
+            transform: translateY(6px) scale(0.98, 0.90); /* Orange squishes down */
         }
 
         .stage-box.shy .monster-yellow {
-            transform: translateY(28px) rotate(6deg); /* Yellow dips down */
-            opacity: 0.88;
+            transform: translateY(12px) rotate(2deg); /* Yellow dips down */
+            opacity: 1;
         }
 
         /* Responsive scaling */
@@ -245,7 +236,7 @@
                         </div>
                         <!-- Back Face (When shy/turned around) -->
                         <div class="flip-face flip-back flex flex-col items-center justify-center">
-                            <div class="w-8 h-1 bg-[#3A29B0] rounded-full opacity-60"></div>
+                            <div class="w-10 h-1 bg-[#4537c7] rounded-full mt-28"></div>
                         </div>
                     </div>
                 </div>
